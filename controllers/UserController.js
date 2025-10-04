@@ -1,19 +1,20 @@
 const User = require('../models/User');
 
-exports.createUser = async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+
+const getUserProfile = async (req, res) => {
+    const userId = req.session.user.id;
+
+    try {
+        const result = await User.findByPk(userId);
+        if (!result) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(500).json({ message: 'Server error', error: error.message });
+    }
 };
 
-exports.getUsers = async (req, res) => {
-  try {
-    const users = await User.findAll();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+module.exports = { getUserProfile };
+
+

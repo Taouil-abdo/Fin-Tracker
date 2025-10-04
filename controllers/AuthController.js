@@ -6,7 +6,7 @@ const registerUser = async (req, res) => {
   const { fullname, email, password, sexe, age } = req.body;
 
   try {
-    // Check if email already exists
+    
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).render('auth/register', {
@@ -33,7 +33,7 @@ const registerUser = async (req, res) => {
     // Send success message
     res.status(201).render('auth/register', {
       message: 'User registered successfully! Please log in.',
-      errors: [] // Empty array to indicate no errors
+      errors: [] // Empty array for no errors
     });
   } catch (err) {
     console.error(err);

@@ -3,306 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FINtrack - Personal Finance Management</title>
+    <title>FinTracker - Take Control of Your Finances</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
-
     <style>
-        Neumorphic Design System
-:root {
-    --neumorphic-bg: #f1f3f6;
-    --neumorphic-shadow-light: #ffffff;
-    --neumorphic-shadow-dark: #d1d9e6;
-    --primary-blue: #3b82f6;
-    --primary-blue-dark: #2563eb;
-  }
-  
-  body {
-    font-family: "Inter", sans-serif;
-  }
-  
-  .bg-neumorphic {
-    background-color: var(--neumorphic-bg);
-  }
-  
-  .font-inter {
-    font-family: "Inter", sans-serif;
-  }
-  
-  /* Base Neumorphic Effects */
-  .neumorphic {
-    background: var(--neumorphic-bg);
-    box-shadow: 8px 8px 16px var(--neumorphic-shadow-dark), -8px -8px 16px var(--neumorphic-shadow-light);
-  }
-  
-  .neumorphic-large {
-    background: var(--neumorphic-bg);
-    box-shadow: 12px 12px 24px var(--neumorphic-shadow-dark), -12px -12px 24px var(--neumorphic-shadow-light);
-  }
-  
-  .neumorphic-small {
-    background: var(--neumorphic-bg);
-    box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark), -4px -4px 8px var(--neumorphic-shadow-light);
-  }
-  
-  .neumorphic-inset {
-    background: var(--neumorphic-bg);
-    box-shadow: inset 8px 8px 16px var(--neumorphic-shadow-dark), inset -8px -8px 16px var(--neumorphic-shadow-light);
-  }
-  
-  /* Interactive Elements */
-  .neumorphic-btn {
-    background: var(--neumorphic-bg);
-    box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .neumorphic-btn:hover {
-    box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark), -4px -4px 8px var(--neumorphic-shadow-light);
-    transform: translateY(1px);
-  }
-  
-  .neumorphic-btn:active {
-    box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark), inset -4px -4px 8px var(--neumorphic-shadow-light);
-    transform: translateY(2px);
-  }
-  
-  .neumorphic-btn-primary {
-    background: linear-gradient(145deg, var(--primary-blue), var(--primary-blue-dark));
-    box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .neumorphic-btn-primary:hover {
-    background: linear-gradient(145deg, var(--primary-blue-dark), var(--primary-blue));
-    box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark), -4px -4px 8px var(--neumorphic-shadow-light);
-    transform: translateY(1px);
-  }
-  
-  .neumorphic-btn-primary:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 4px var(--neumorphic-shadow-dark), -2px -2px 4px var(--neumorphic-shadow-light);
-  }
-  
-  /* Hover Effects for Cards */
-  .neumorphic:hover {
-    box-shadow: 12px 12px 24px var(--neumorphic-shadow-dark), -12px -12px 24px var(--neumorphic-shadow-light);
-    transform: translateY(-2px);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .neumorphic-large {
-      box-shadow: 8px 8px 16px var(--neumorphic-shadow-dark), -8px -8px 16px var(--neumorphic-shadow-light);
-    }
-  
-    .neumorphic {
-      box-shadow: 6px 6px 12px var(--neumorphic-shadow-dark), -6px -6px 12px var(--neumorphic-shadow-light);
-    }
-  }
-  
-  /* Smooth Scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Custom Animations */
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-  
+        .hero-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .fade-in.show { opacity: 1; transform: translateY(0); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     </style>
-
 </head>
-<body class="bg-neumorphic font-inter">
+<body class="bg-white">
     <!-- Navigation -->
-    <nav class="neumorphic sticky top-0 z-50 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
-                    <div class="neumorphic-small w-10 h-10 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-chart-line text-blue-600 text-lg"></i>
-                    </div>
-                    <span class="text-2xl font-bold text-gray-800">FINtrack</span>
+                    <i class="fas fa-wallet text-blue-600 text-2xl"></i>
+                    <span class="text-2xl font-bold text-gray-800">FinTracker</span>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
-                    <a href="#testimonials" class="text-gray-600 hover:text-blue-600 transition-colors">Testimonials</a>
-                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button class="neumorphic-btn text-gray-600 px-4 py-2 rounded-xl hover:text-blue-600 transition-colors">
-                        Sign In
-                    </button>
-                    <button class="neumorphic-btn-primary text-white px-6 py-2 rounded-xl font-medium">
-                        Get Started
-                    </button>
+                <div class="flex space-x-4">
+                    <a href="/login" class="text-gray-600 hover:text-blue-600 px-4 py-2 font-medium">Login</a>
+                    <a href="/register" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 font-medium">Get Started</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="neumorphic-large rounded-3xl p-12 mb-12">
-                <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-                    The only app that gets your 
-                    <span class="text-blue-600">money into shape</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-                    Take control of your finances with our comprehensive personal finance management app. 
-                    Track expenses, set budgets, achieve savings goals, and visualize your financial journey.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button class="neumorphic-btn-primary text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center space-x-2">
-                        <i class="fas fa-download"></i>
-                        <span>Start Free Trial</span>
-                    </button>
-                    <button class="neumorphic-btn text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg flex items-center space-x-2">
-                        <i class="fas fa-play"></i>
-                        <span>Watch Demo</span>
-                    </button>
+    <section class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 pt-20 pb-16 min-h-screen flex items-center">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, white 2px, transparent 2px), radial-gradient(circle at 75% 75%, white 2px, transparent 2px); background-size: 50px 50px;"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <div class="mb-6">
+                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-4">
+                            <i class="fas fa-star text-yellow-500 mr-2"></i>
+                            Trusted by 50,000+ users
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight fade-in">
+                        Master Your
+                        <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                            Financial Future
+                        </span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 fade-in">
+                        Track expenses, create budgets, and achieve your financial goals with our intelligent platform.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in">
+                        <a href="/register" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-gray-900 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl hover:from-yellow-300 hover:to-orange-400 transform hover:scale-105 transition-all duration-200 shadow-xl">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Start Free Trial
+                            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Free</span>
+                        </a>
+                        <a href="/login" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white/30 rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all duration-200">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Sign In
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center justify-center lg:justify-start space-x-8 text-blue-200 fade-in">
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-green-400 mr-2"></i>
+                            <span class="text-sm">Bank-level Security</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-mobile-alt text-blue-400 mr-2"></i>
+                            <span class="text-sm">Mobile Ready</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-purple-400 mr-2"></i>
+                            <span class="text-sm">Real-time Sync</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- App Preview -->
-            <div class="neumorphic-inset rounded-3xl p-8">
-                <img src="../public/img/modern-financial-dashboard-interface-on-mobile-pho.jpg" 
-                     alt="FINtrack App Interface" 
-                     class="mx-auto max-w-md w-full rounded-2xl shadow-2xl">
+                
+                <!-- Right Content -->
+                <div class="relative lg:block hidden fade-in">
+                    <div class="relative z-10">
+                        <!-- Main Dashboard Image -->
+                        <div class="relative bg-white rounded-3xl shadow-2xl p-6 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=400&fit=crop" alt="FinTracker Dashboard" class="rounded-2xl w-full">
+                            
+                            <!-- Floating Cards -->
+                            <div class="absolute -top-6 -left-6 bg-green-500 text-white p-4 rounded-2xl shadow-xl transform -rotate-12 hover:rotate-0 transition-transform duration-300">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <div>
+                                        <div class="text-sm opacity-90">Income</div>
+                                        <div class="font-bold text-lg">+$3,240</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="absolute -bottom-6 -right-6 bg-blue-500 text-white p-4 rounded-2xl shadow-xl transform rotate-12 hover:rotate-0 transition-transform duration-300">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-bullseye"></i>
+                                    <div>
+                                        <div class="text-sm opacity-90">Goal Progress</div>
+                                        <div class="font-bold text-lg">87%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="absolute top-1/2 -right-8 bg-purple-500 text-white p-3 rounded-xl shadow-xl transform rotate-6 hover:rotate-0 transition-transform duration-300">
+                                <div class="text-center">
+                                    <i class="fas fa-chart-line text-xl mb-1"></i>
+                                    <div class="text-xs font-medium">Trending Up</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Background Decorations -->
+                        <div class="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-64 h-64 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-3xl"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Powerful Features</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Everything you need to manage your personal finances effectively
-                </p>
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose FinTracker?</h2>
+                <p class="text-xl text-gray-600">Everything you need to master your money</p>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="neumorphic rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300">
-                    <div class="neumorphic-small w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-bolt text-blue-600 text-2xl"></i>
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-exchange-alt text-blue-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Transaction Tracking</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Automatically categorize and track all your income and expenses with intelligent recognition.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4">💰 Manage Transactions</h3>
+                    <p class="text-gray-600">Track every penny with smart categorization and instant insights into your spending habits.</p>
                 </div>
-                
-                <div class="neumorphic rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300">
-                    <div class="neumorphic-small w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-mobile-alt text-green-600 text-2xl"></i>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-pie text-green-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Budget Management</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Create custom budgets and get real-time alerts when you're approaching your limits.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4">📊 Visualize Spending</h3>
+                    <p class="text-gray-600">Beautiful charts and reports that make understanding your finances simple and clear.</p>
                 </div>
-                
-                <div class="neumorphic rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300">
-                    <div class="neumorphic-small w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-chart-bar text-purple-600 text-2xl"></i>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-purple-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data Visualization</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Interactive charts and graphs help you understand your spending patterns and financial trends.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4">🎯 Reach Goals</h3>
+                    <p class="text-gray-600">Set savings targets and watch your progress with motivating visual indicators.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">What Our Users Say</h2>
-                <p class="text-xl text-gray-600">Join thousands of satisfied users managing their finances better</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="neumorphic rounded-2xl p-8">
-                    <div class="flex items-center mb-4">
-                        <img src="/professional-woman-smiling-headshot.png" 
-                             alt="Sarah Johnson" 
-                             class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
-                            <p class="text-gray-600 text-sm">Marketing Manager</p>
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Trusted by Smart Savers</h2>
+                    <p class="text-xl text-gray-600 mb-8">Join thousands who've transformed their financial lives</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-blue-600">50K+</div>
+                            <div class="text-gray-600">Active Users</div>
                         </div>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        "FINtrack has completely transformed how I manage my money. The budgeting features are intuitive and the insights are incredibly helpful."
-                    </p>
-                    <div class="flex text-yellow-400 mt-4">
-                        <% for(let i = 0; i < 5; i++) { %>
-                            <i class="fas fa-star"></i>
-                        <% } %>
+                        <div class="bg-green-50 p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-green-600">$2M+</div>
+                            <div class="text-gray-600">Money Saved</div>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-purple-600">98%</div>
+                            <div class="text-gray-600">Satisfaction</div>
+                        </div>
+                        <div class="bg-yellow-50 p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-yellow-600">4.9★</div>
+                            <div class="text-gray-600">App Rating</div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="neumorphic rounded-2xl p-8">
-                    <div class="flex items-center mb-4">
-                        <img src="/professional-man-smiling-headshot.png" 
-                             alt="Michael Chen" 
-                             class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Michael Chen</h4>
-                            <p class="text-gray-600 text-sm">Software Developer</p>
+                <div class="fade-in">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" alt="Happy User" class="rounded-xl shadow-lg w-full h-32 object-cover">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Satisfied Customer" class="rounded-xl shadow-lg w-full h-32 object-cover mt-8">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Success Story" class="rounded-xl shadow-lg w-full h-32 object-cover -mt-8">
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-6 rounded-xl shadow-lg flex items-center justify-center text-white">
+                            <div class="text-center">
+                                <div class="text-3xl mb-2">💰</div>
+                                <div class="font-bold">Financial Freedom</div>
+                            </div>
                         </div>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        "The automatic categorization saves me hours every month. I finally have a clear picture of where my money goes."
-                    </p>
-                    <div class="flex text-yellow-400 mt-4">
-                        <% for(let i = 0; i < 5; i++) { %>
-                            <i class="fas fa-star"></i>
-                        <% } %>
-                    </div>
-                </div>
-                
-                <div class="neumorphic rounded-2xl p-8">
-                    <div class="flex items-center mb-4">
-                        <img src="/testimonial-person-3.png" 
-                             alt="Emily Rodriguez" 
-                             class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Emily Rodriguez</h4>
-                            <p class="text-gray-600 text-sm">Small Business Owner</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed">
-                        "Perfect for both personal and business finances. The reporting features help me make better financial decisions."
-                    </p>
-                    <div class="flex text-yellow-400 mt-4">
-                        <% for(let i = 0; i < 5; i++) { %>
-                            <i class="fas fa-star"></i>
-                        <% } %>
                     </div>
                 </div>
             </div>
@@ -310,76 +213,41 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="neumorphic-large rounded-3xl p-12">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">Ready to Take Control?</h2>
-                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                    Join thousands of users who have transformed their financial lives with FINtrack.
-                </p>
-                <button class="neumorphic-btn-primary text-white px-8 py-4 rounded-xl font-semibold text-lg">
-                    Start Your Free Trial Today
-                </button>
-            </div>
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6 fade-in">Ready to Start Your Financial Journey?</h2>
+            <p class="text-xl text-gray-300 mb-8 fade-in">Join thousands who've taken control of their money</p>
+            <a href="/register" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transform hover:scale-105 transition-all inline-block fade-in">
+                Get Started - It's Free
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="py-16 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="neumorphic rounded-3xl p-12">
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div class="md:col-span-2">
-                        <div class="flex items-center space-x-2 mb-4">
-                            <div class="neumorphic-small w-10 h-10 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-chart-line text-blue-600 text-lg"></i>
-                            </div>
-                            <span class="text-2xl font-bold text-gray-800">FINtrack</span>
-                        </div>
-                        <p class="text-gray-600 mb-6 max-w-md">
-                            The comprehensive personal finance management solution that helps you achieve your financial goals.
-                        </p>
-                        <div class="flex space-x-4">
-                            <a href="#" class="neumorphic-small w-10 h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="neumorphic-small w-10 h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="neumorphic-small w-10 h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-4">Product</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Features</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Pricing</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Security</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Updates</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-4">Support</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Help Center</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Contact Us</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Privacy Policy</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="border-t border-gray-200 mt-12 pt-8 text-center">
-                    <p class="text-gray-600">
-                        © <%= new Date().getFullYear() %> FINtrack. All rights reserved.
-                    </p>
-                </div>
+    <footer class="bg-white py-8 border-t">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <i class="fas fa-wallet text-blue-600 text-xl"></i>
+                <span class="text-xl font-bold text-gray-800">FinTracker</span>
             </div>
+            <p class="text-gray-600">© 2024 FinTracker. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Simple scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            setTimeout(() => document.querySelector('.fade-in').classList.add('show'), 200);
+        });
+    </script>
 </body>
 </html>

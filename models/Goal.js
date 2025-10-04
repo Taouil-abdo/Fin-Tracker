@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('../config/database');
 
-const Budget = db.define('Budget', {
+const Goal = db.define('Goal', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -22,7 +22,7 @@ const Budget = db.define('Budget', {
             len: [0, 500]
         }
     },
-    amount: {
+    targetAmount: {
         type: DataTypes.DECIMAL(15, 2),
         allowNull: false,
         validate: {
@@ -30,7 +30,7 @@ const Budget = db.define('Budget', {
             isDecimal: true
         }
     },
-    spentAmount: {
+    currentAmount: {
         type: DataTypes.DECIMAL(15, 2),
         allowNull: false,
         defaultValue: 0.00,
@@ -39,30 +39,27 @@ const Budget = db.define('Budget', {
             isDecimal: true
         }
     },
-    startDate: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-        validate: {
-            isDate: true
-        }
-    },
-    endDate: {
+    targetDate: {
         type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
             isDate: true,
-            isAfterStartDate(value) {
-                if (value <= this.startDate) {
-                    throw new Error('End date must be after start date');
+            isAfterToday(value) {
+                if (value <= new Date()) {
+                    throw new Error('Target date must be in the future');
                 }
             }
         }
     },
     status: {
-        type: DataTypes.ENUM('active', 'completed', 'exceeded', 'paused'),
+        type: DataTypes.ENUM('active', 'completed', 'paused', 'cancelled'),
         allowNull: false,
         defaultValue: 'active'
+    },
+    priority: {
+        type: DataTypes.ENUM('low', 'medium', 'high'),
+        allowNull: false,
+        defaultValue: 'medium'
     },
     userId: {
         type: DataTypes.INTEGER,
@@ -77,14 +74,15 @@ const Budget = db.define('Budget', {
     paranoid: true,
     indexes: [
         {
-            fields: ['userId', 'startDate']
+            fields: ['userId', 'status']
         },
         {
-            fields: ['status']
+            fields: ['targetDate']
+        },
+        {
+            fields: ['priority']
         }
     ]
 });
 
-module.exports = Budget;
-
-
+module.exports = Goal;
